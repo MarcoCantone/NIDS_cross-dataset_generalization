@@ -225,60 +225,60 @@ if __name__ == "__main__":
 
     # PREPROCESS CIC2017
 
-    # # concatenate csv
-    # dataset = pd.DataFrame()
-    # for file in os.listdir(cic2017_csv_folder):
-    #     print(f'loading {os.path.join(cic2017_csv_folder, file)}')
-    #     dataset = pd.concat([dataset, pd.read_csv(os.path.join(cic2017_csv_folder, file))], axis=0)
-    #
-    # # remove duplicate feature "Fwd Header Length"
-    # dataset = dataset.drop(" Fwd Header Length.1", axis=1)
-    # # rename columns according to list "features" (this is mainly for removing the space that exist at the beginning of some features name)
-    # dataset = dataset.rename({list(dataset.columns)[i]: features[i] for i in range(len(features))}, axis=1)
-    # # clean dataset (remove rows with NaN or inf)
-    # dataset = dataset.dropna()
-    # dataset = dataset[(dataset != float("inf")).all(axis=1)]
-    #
-    # # rename attack names
-    # dataset["Label"] = dataset["Label"].replace(rename_class_cic2017)
-    #
-    # # save dataFrame as csv
-    # dataset.to_csv(os.path.join(save_path, "CIC-IDS2017.csv"), sep=',', index=False)
-    #
-    # # ------------------------------------------------------------------------------------------------------------------
-    #
-    # # PREPROCESS CIC2018
-    #
-    # # concatenate csv
-    # dataset_list = []
-    # dataset = pd.DataFrame()
-    # for csv_file_name in os.listdir(cic2018_csv_folder):
-    #     print(f'Loading {csv_file_name}')
-    #     dataset_list.append(pd.read_csv(os.path.join(cic2018_csv_folder, csv_file_name)))
-    #     print(dataset_list[-1]["Label"].value_counts())
-    #     print(len(dataset_list[-1]))
-    #     if csv_file_name in ["Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv",
-    #                          "Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv",
-    #                          "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv"]:
-    #         dataset_list[-1] = dataset_list[-1][dataset_list[-1]["Label"] != "Label"]
-    #     if csv_file_name == 'Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv':
-    #         dataset_list[-1] = dataset_list[-1].drop(['Flow ID', 'Src IP', 'Src Port', 'Dst IP'], axis=1)
-    # dataset = pd.concat(dataset_list, axis=0)
-    # # remove features not present in 2017
-    # dataset = dataset.drop(["Protocol", "Timestamp"], axis=1)
-    #
-    # # rename features name
-    # dataset = dataset.rename({list(dataset.columns)[i]: features[i] for i in range(len(features))}, axis=1)
-    # # clean dataset
-    # dataset = dataset.dropna()
-    # dataset = dataset[(dataset != "Infinity").all(axis=1)]
-    # dataset = dataset[(dataset != float("inf")).all(axis=1)]
-    #
-    # # rename attack names
-    # dataset["Label"] = dataset["Label"].replace(rename_class_cic2018)
-    #
-    # # save dataset as csv
-    # dataset.to_csv(os.path.join(save_path, "CSE-CIC-IDS2018.csv"), sep=',', index=False)
+    # concatenate csv
+    dataset = pd.DataFrame()
+    for file in os.listdir(cic2017_csv_folder):
+        print(f'loading {os.path.join(cic2017_csv_folder, file)}')
+        dataset = pd.concat([dataset, pd.read_csv(os.path.join(cic2017_csv_folder, file))], axis=0)
+
+    # remove duplicate feature "Fwd Header Length"
+    dataset = dataset.drop(" Fwd Header Length.1", axis=1)
+    # rename columns according to list "features" (this is mainly for removing the space that exist at the beginning of some features name)
+    dataset = dataset.rename({list(dataset.columns)[i]: features[i] for i in range(len(features))}, axis=1)
+    # clean dataset (remove rows with NaN or inf)
+    dataset = dataset.dropna()
+    dataset = dataset[(dataset != float("inf")).all(axis=1)]
+
+    # rename attack names
+    dataset["Label"] = dataset["Label"].replace(rename_class_cic2017)
+
+    # save dataFrame as csv
+    dataset.to_csv(os.path.join(save_path, "CIC-IDS2017.csv"), sep=',', index=False)
+
+    # ------------------------------------------------------------------------------------------------------------------
+
+    # PREPROCESS CIC2018
+
+    # concatenate csv
+    dataset_list = []
+    dataset = pd.DataFrame()
+    for csv_file_name in os.listdir(cic2018_csv_folder):
+        print(f'Loading {csv_file_name}')
+        dataset_list.append(pd.read_csv(os.path.join(cic2018_csv_folder, csv_file_name)))
+        print(dataset_list[-1]["Label"].value_counts())
+        print(len(dataset_list[-1]))
+        if csv_file_name in ["Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv",
+                             "Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv",
+                             "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv"]:
+            dataset_list[-1] = dataset_list[-1][dataset_list[-1]["Label"] != "Label"]
+        if csv_file_name == 'Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv':
+            dataset_list[-1] = dataset_list[-1].drop(['Flow ID', 'Src IP', 'Src Port', 'Dst IP'], axis=1)
+    dataset = pd.concat(dataset_list, axis=0)
+    # remove features not present in 2017
+    dataset = dataset.drop(["Protocol", "Timestamp"], axis=1)
+
+    # rename features name
+    dataset = dataset.rename({list(dataset.columns)[i]: features[i] for i in range(len(features))}, axis=1)
+    # clean dataset
+    dataset = dataset.dropna()
+    dataset = dataset[(dataset != "Infinity").all(axis=1)]
+    dataset = dataset[(dataset != float("inf")).all(axis=1)]
+
+    # rename attack names
+    dataset["Label"] = dataset["Label"].replace(rename_class_cic2018)
+
+    # save dataset as csv
+    dataset.to_csv(os.path.join(save_path, "CSE-CIC-IDS2018.csv"), sep=',', index=False)
 
     # ------------------------------------------------------------------------------------------------------------------
 
