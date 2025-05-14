@@ -118,3 +118,16 @@ The following is an example for the decision tree classifier
     "ccp_alpha": []
 }
 ```
+
+## 📝 Citation
+
+If you use this code or dataset in your research, please cite the following paper:
+
+```bibtex
+@article{cantone2024machine,
+  title={Machine Learning in Network Intrusion Detection: A Cross-Dataset Generalization Study},
+  author={Cantone, Marco and Marrocco, Claudio and Bria, Alessandro},
+  journal={IEEE Access},
+  year={2024},
+  publisher={IEEE}
+}
