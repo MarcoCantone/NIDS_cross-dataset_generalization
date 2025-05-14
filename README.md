@@ -43,8 +43,9 @@ The script CyberExperiment.py is used to run within-dataset and cross-dataset ma
 It supports command-line arguments to configure various aspects of the experiment.
 
 Results are saved as a Python dictionary using torch.save() in the specified workspace directory and can be reloaded with torch.load().
-res/
-├── train                      
+This is the structure of the result dictionary.
+res
+├── train
 │   ├── mcc
 │   └── acc
 ├── test
@@ -70,13 +71,13 @@ res/
 ## 📌 Example Usages
 
 ### 🔹 Example 1:
-Within-Dataset Binary Classification (CIC-IDS2017)
+Within-Dataset Binary Classification (CIC-IDS2017) with a 80:20 split and a random forest classifier.
 ```bash
 python CyberExperiment.py --csv-file ".../CIC-IDS2017.csv" --train-test-split 0.8 --classifier rf --workspace ".../exp1/"
 ```
 
 ### 🔹 Example 2:
-Cross-dataset binary experiment using the cic-ids2017 as training set and the cse-cic-ids2018 as test set.
+Cross-dataset binary experiment using the CIC-IDS2017 as training set and the CSE-CIC-IDS2018 as test set.
 
 ```bash
 python .../CyberExperiment.py --csv-file ".../CIC-IDS2017.csv" --ext-test-set ".../CSE-CIC-IDS2018.csv" --classifier rf --workspace ".../exp2/"
@@ -90,14 +91,14 @@ python .../CyberExperiment.py --csv-file ".../LycoS-IDS2017.csv" --ext-test-set 
 ```
 
 ### 🔹 Example 4:
-Within-dataset Benign vs DoS GoldenEye experiment on the LycoS-IDS2017 using a grid search for the classifier hyperparameters optimization. In addition the mac-umbalance ration between classes is set to 10.
+Within-dataset Benign vs DoS GoldenEye experiment on the LycoS-IDS2017 using a grid search for the classifier hyperparameters optimization. In addition the max unbalance ratio between classes is set to 10.
 
 ```bash
 python .../CyberExperiment.py --csv-file ".../LycoS-IDS2017.csv" --train-test-split 0.8 --training-mode binary --categorical-features "ip_prot" --classes "Benign" "DoS GoldenEye" --negative-label "Benign" --max-unbalance-ratio 10 --classifier dt --clf-params ".../dt_grid_search_space.json" --classifier dt --workspace ".../exp4/"
 ```
 
-The json file defining the search space for the grid space is a jaml containing a single dict of string: list. Where the key represent the name of the hyperparameters and the list all the possible values that we want to try.
-The following is an example fro the decision tree classifier
+The json file defining the search space for the grid search is a jaml file containing a dict of string: list. Where the key represent the name of the hyperparameters and the list all the possible values that we want to try.
+The following is an example for the decision tree classifier
 
 ```json
 {
