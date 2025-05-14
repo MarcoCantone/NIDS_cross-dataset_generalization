@@ -25,16 +25,16 @@ To do so, edit the beginning of the script and set the correct paths for input f
 
 ```python
 # Insert the path of the folder "MachineLearningCVE" from the CIC-IDS2017 dataset
-cic2017_csv_folder = "/data/cantone/datasets/cic-ids2017/MachineLearningCVE/"
+cic2017_csv_folder = ".../cic-ids2017/MachineLearningCVE/"
 
 # Insert the path of the folder "Processed Traffic Data for ML Algorithms" from the CSE-CIC-IDS2018 dataset
-cic2018_csv_folder = "/mnt/qnap2/cse-cic-ids2018/Processed Traffic Data for ML Algorithms/"
+cic2018_csv_folder = ".../cse-cic-ids2018/Processed Traffic Data for ML Algorithms/"
 
 # Insert the path to LycoS-IDS2017 CSV files
-lycos_folder = "/home/cantone/Datasets/lycos-ids2017/"
+lycos_folder = ".../lycos-ids2017/"
 
 # Output directory for preprocessed CSVs
-save_path = "/data/cantone/datasets/test_ids/"
+save_path = ".../datasets_NIDS/"
 ```
 
 
